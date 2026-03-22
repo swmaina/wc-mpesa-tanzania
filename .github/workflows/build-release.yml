@@ -1,0 +1,47 @@
+name: Build Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Build plugin archive
+        run: |
+          mkdir -p build/wc-mpesa-tanzania
+          
+          # Copy only production files
+          rsync -av --exclude='build' \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='tests' \
+            --exclude='vendor' \
+            --exclude='node_modules' \
+            --exclude='*.md' \
+            --exclude='composer.*' \
+            --exclude='package.json' \
+            --exclude='phpunit.xml' \
+            --exclude='phpcs.xml' \
+            --exclude='.env*' \
+            --exclude='.gitignore' \
+            ./ build/wc-mpesa-tanzania/
+          
+          cd build
+          zip -r "wc-mpesa-tanzania-${{ steps.get_version.outputs.VERSION }}.zip" wc-mpesa-tanzania/
+          cd ..
+
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/wc-mpesa-tanzania-*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
