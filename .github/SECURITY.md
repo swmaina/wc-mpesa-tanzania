@@ -4,7 +4,7 @@
 
 **Please do not create a public GitHub issue for security vulnerabilities.**
 
-Instead, email security concerns to: `security@example.com`
+Instead, email security concerns to: `safe@mindsafe.co.ke`
 
 Include:
 - Type of vulnerability
@@ -42,7 +42,7 @@ Include:
 
 | Version | Status | Support Until |
 |---------|--------|---------------|
-| 1.0.x   | Current | 2025-01-01   |
+| 1.0.x   | Current | 2027-01-01   |
 | < 1.0   | Unsupported | - |
 
 ## Security Advisories
