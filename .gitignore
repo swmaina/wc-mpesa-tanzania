@@ -1,0 +1,42 @@
+# WordPress
+wp-*
+wordpress/
+wp-content/uploads/
+wp-content/backup-*
+*.log
+
+# Dependencies
+vendor/
+composer.lock
+node_modules/
+package-lock.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.project
+.classpath
+.c9/
+*.sublime-workspace
+
+# Testing
+coverage/
+.phpunit.result.cache
+tests/wp-cli-info.txt
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Plugin specific
+debug.log
+error.log
+
+# OS
+Thumbs.db
+.DS_Store
